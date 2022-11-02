@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { CommonHeader } from "./components/common/CommonHeader";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { ArbiterPage } from "./pages/ArbiterPage";
+import { CompetitionResoultsPage } from "./pages/CompetitionResoultsPage";
+import { CompetitionListPage } from "./pages/CompetitionListPage";
+import { CompetitionDetailsPage } from "./pages/CompetitionDetailsPage";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <CommonHeader />
+      <Routes>
+        <Route exact path="/" element={<CompetitionListPage />}></Route>
+        <Route
+          exact
+          path="/competition-details/:id"
+          element={<CompetitionDetailsPage />}
+        ></Route>
+        <Route
+          exact
+          path="/competition-results/:id"
+          element={<CompetitionResoultsPage />}
+        ></Route>
+        <Route exact path="/arbiter/:id" element={<ArbiterPage />}></Route>
+      </Routes>
+    </Router>
   );
 }
 
